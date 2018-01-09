@@ -1,0 +1,6 @@
+#! /bin/sh
+
+set -e 
+
+/root/virtualenv/bin/pytest --doctest-modules --ignore gunicorn.conf.py -v
+/root/virtualenv/bin/pylint "$@"
