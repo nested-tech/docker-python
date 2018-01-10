@@ -8,6 +8,8 @@ RUN apt-get install -yq postgresql postgresql-contrib libpq-dev
 RUN mkdir -p /root
 RUN python3 -m venv /root/virtualenv
 
+RUN /root/virtualenv/bin/pip install 'wheel ~= 0.30'
+
 # Some standard utilities we need for checking code.
 RUN /root/virtualenv/bin/pip install 'pylint ~= 1.7' 
 RUN /root/virtualenv/bin/pip install 'pytest ~= 3.1' 
