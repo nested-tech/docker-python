@@ -2,5 +2,5 @@
 
 set -e 
 
-/root/virtualenv/bin/pytest "$@" --doctest-modules -v
+/root/virtualenv/bin/pytest "$1" --doctest-modules -v
 /root/virtualenv/bin/pylint "$@"
