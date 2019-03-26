@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.7
 
 RUN apt-get update
 RUN apt-get install -yq build-essential git libstdc++6 liblapack-dev gcc musl-dev
