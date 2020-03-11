@@ -13,8 +13,16 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
+# Get poetry so we can manage python dependencies in a goodish way
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+
+# Create dir for poetry virtualenvs and pip base virtualenv
+RUN mkdir -p /root/poetry_venvs
+
+# Some projects will expect poetry venvs to be here, and so will cache this dir on CI
+RUN poetry config virtualenvs.path /root/poetry_venvs
+
 # It's always good practice to use a virtualenv, so we create one beforehand.
-RUN mkdir -p /root
 RUN python3 -m venv /root/virtualenv
 
 RUN /root/virtualenv/bin/pip install 'wheel ~= 0.30'
